@@ -1,12 +1,41 @@
 package br.senai.sp.jandira.model;
 
+import br.senai.sp.jandira.lista.TipoConta;
+
 public class Conta {
 
-	public String tipo;
-	public String numero;
-	public String numeroAgencia;
+	private TipoConta tipo;
+	private String numero;
+	private String numeroAgencia;
 	public String titular;
 	private double saldo;
+
+	// Construidores da classe conta
+
+	public Conta(String numeroConta) {
+		numero = numeroConta;
+	}
+
+	public void setTipo(TipoConta tipo) {
+
+		this.tipo = tipo;
+
+	}
+
+	public TipoConta getTipo() {
+		return tipo;	
+	}
+	
+	public void setnumeroAgencia (String numeroAgencia) {
+		this.numeroAgencia = numeroAgencia;		
+	}
+
+	public String getnumeroAgencia() {
+		return numeroAgencia;
+	}
+	
+	
+	// Métodos da classe conta
 
 	public void depositar(double valorDeposito) {
 		System.out.println();
@@ -28,8 +57,7 @@ public class Conta {
 		if (valorSaque < 0 || saldo < valorSaque) {
 			System.out.println("não foi possivel realizar esta operação.");
 			return false;
-		}	
-		else {
+		} else {
 			saldo -= valorSaque;
 			System.out.println("Saque efetuado com sucesso");
 			return true;
@@ -38,16 +66,15 @@ public class Conta {
 
 	public void transferir(Conta contaDestino, double valorTransferencia) {
 
-			boolean resultado = sacar(valorTransferencia);
-			
-			System.out.println("");
-			System.out.println("Efetuando transerência ...");
-			if(resultado) {
+		boolean resultado = sacar(valorTransferencia);
+
+		System.out.println("");
+		System.out.println("Efetuando transerência ...");
+		if (resultado) {
 			contaDestino.depositar(valorTransferencia);
-			}
-			else {
-				System.out.println("Não foi possivel realizar esta operação");
-			}
+		} else {
+			System.out.println("Não foi possivel realizar esta operação");
+		}
 	}
 
 	public void exibirDetalhes() {
