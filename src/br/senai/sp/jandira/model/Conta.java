@@ -1,22 +1,53 @@
 package br.senai.sp.jandira.model;
 
+import br.senai.sp.jandira.agencia.*;
+import br.senai.sp.jandira.lista.TipoConta;
+
 public class Conta {
 
-	
-	// Atributos da clasee Conta
-	public String tipo;
-	public String numero;
-	public String numeroAgencia;
-	public String titular;
+	// Métodos da classe Conta
+
+	public TipoConta tipo;
+	private String numero;
+	private Agencia agencia;
+	private Cliente titular;
 	private double saldo;
 
-	// Construtores da classe Conta
+	public void setTitular(Cliente titular) {
+
+		this.titular = titular;
+	}
+
+	public Cliente getTitular() {
+		return titular;
+	}
+
+	// Construidores da classe conta
+
 	public Conta(String numeroConta) {
 		numero = numeroConta;
 	}
-	
-	
-	// Métodos da classe Conta
+
+	public void setTipo(TipoConta tipo) {
+
+		this.tipo = tipo;
+
+	}
+
+	public TipoConta getTipo() {
+		return tipo;
+	}
+
+	public void setAgencia(Agencia agencia) {
+		this.agencia = agencia;
+	}
+
+	public Agencia getnumeroAgencia() {
+		return agencia;
+	}
+
+	// Métodos da classe conta
+
 	public void depositar(double valorDeposito) {
 		System.out.println();
 		System.out.println("Efetuando depósito ...");
@@ -37,8 +68,7 @@ public class Conta {
 		if (valorSaque < 0 || saldo < valorSaque) {
 			System.out.println("não foi possivel realizar esta operação.");
 			return false;
-		}	
-		else {
+		} else {
 			saldo -= valorSaque;
 			System.out.println("Saque efetuado com sucesso");
 			return true;
@@ -47,24 +77,27 @@ public class Conta {
 
 	public void transferir(Conta contaDestino, double valorTransferencia) {
 
-			boolean resultado = sacar(valorTransferencia);
-			
-			System.out.println("");
-			System.out.println("Efetuando transerência ...");
-			if(resultado) {
+		boolean resultado = sacar(valorTransferencia);
+
+		System.out.println("");
+		System.out.println("Efetuando transerência ...");
+		if (resultado) {
 			contaDestino.depositar(valorTransferencia);
-			}
-			else {
-				System.out.println("Não foi possivel realizar esta operação");
-			}
+		} else {
+			System.out.println("Não foi possivel realizar esta operação");
+		}
 	}
 
 	public void exibirDetalhes() {
 		System.out.println();
 		System.out.println("---------------------");
-		System.out.printf("Titular: %s\n", titular);
+		System.out.printf("Titular: %s\n", titular.getNome());
+		System.out.printf("E-mail: %s\n", titular.getEmail());
 		System.out.printf("Número: %s\n", numero);
-		System.out.printf("Agência: %s\n", numeroAgencia);
+		System.out.printf("Gerente: %s\n", agencia.getGerente());
+		System.out.printf("Cidade: %s\n", agencia.getCidade());
+		System.out.printf("Número agencia: %s\n", agencia.getNumero());
+		System.out.printf("Telefone: %s\n", agencia.getTelefone());
 		System.out.printf("Tipo: %s\n", tipo);
 		System.out.printf("Saldo: %s\n", saldo);
 	}
