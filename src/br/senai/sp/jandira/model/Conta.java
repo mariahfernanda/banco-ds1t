@@ -2,12 +2,21 @@ package br.senai.sp.jandira.model;
 
 public class Conta {
 
+	
+	// Atributos da clasee Conta
 	public String tipo;
 	public String numero;
 	public String numeroAgencia;
 	public String titular;
 	private double saldo;
 
+	// Construtores da classe Conta
+	public Conta(String numeroConta) {
+		numero = numeroConta;
+	}
+	
+	
+	// Métodos da classe Conta
 	public void depositar(double valorDeposito) {
 		System.out.println();
 		System.out.println("Efetuando depósito ...");
